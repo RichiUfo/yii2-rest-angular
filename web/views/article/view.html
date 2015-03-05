@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div ng-repeat="comment in articleCtrl.comments">
-                {{comment.text}}
+                {{comment.text}} {{comment.created | timeago}}
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         <label>Message</label>
-                        <textarea ng-model="articleCtrl.comment.text" rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                        <textarea ng-model="articleCtrl.comment.text" rows="5" name="text" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                 <div id="success"></div>
                 <div class="row">
                     <div class="form-group col-xs-12">
-                        <button ng-click="articleCtrl.addComment(comment)" class="btn btn-default">Ответить</button>
+                        <button ng-click="articleCtrl.addComment(articleCtrl.comment)" class="btn btn-default">Ответить</button>
                     </div>
                 </div>
             </form>

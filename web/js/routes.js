@@ -23,7 +23,8 @@
                                 articles: ['articleService', function(articleService) {
                                     return articleService.all();
                                 }],
-                                article: function() { return {}; }
+                                article: function() { return {}; },
+                                comments: function() { return {}; }
                             }
                         }
                     }
@@ -39,6 +40,9 @@
                                 articles: function() { return {}; },
                                 article: ['$stateParams','articleService', function($stateParams, articleService) {
                                     return articleService.get($stateParams.id);
+                                }],
+                                comments: ['$stateParams', 'commentService', 'articleService', function($stateParams,commentService, articleService) {
+                                    return commentService.all(articleService.model, $stateParams.id);
                                 }]
                             }
                         }

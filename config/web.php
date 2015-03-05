@@ -15,6 +15,11 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/article',
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/comment',
+                ],
+                'GET api/comments/<type>/<type_id>' => 'api/comment/index',
             ],
         ],
         'request' => [

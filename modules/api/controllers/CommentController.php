@@ -4,14 +4,14 @@ namespace app\modules\api\controllers;
 
 use yii\rest\ActiveController;
 
-class ArticleController extends ActiveController
+class CommentController extends ActiveController
 {
-    public $modelClass = 'app\modules\api\models\Article';
+    public $modelClass = 'app\modules\api\models\Comment';
 
     public function actions()
     {
         $actions = parent::actions();
-        $actions['index'] = 'app\modules\api\controllers\article\IndexAction';
+        $actions['index'] = 'app\modules\api\controllers\comment\IndexAction';
         return $actions;
     }
 }

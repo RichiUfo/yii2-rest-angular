@@ -3,14 +3,18 @@
 	angular.module('app')
 		.controller('articleController', articleController);
 
-	articleController.$inject = ['$state', '$rootScope', 'articleService', 'articles', 'article'];
-	function articleController($state, $rootScope, articleService, articles, article) {
+	articleController.$inject = ['$state', '$rootScope', 'articleService', 'commentService', 'articles', 'article', 'comments'];
+	function articleController($state, $rootScope, articleService, commentService, articles, article, comments) {
 		var vm = this;
 		vm.articles = articles.data;
 		vm.article = article.data;
 		vm.params = $state.params;
+		vm.comments = comments.data;
+		vm.comment = {};
 		vm.errors = [];
+
 		vm.createArticle = createArticle;
+		vm.addComment = addComment;
 
 		$rootScope.rndBG = getRandomInt(1,4);
 		if(vm.article)
@@ -33,6 +37,17 @@
 						vm.errors[value.field] = value.message;
 					});
 				});
-		};
+		}
+
+		function addComment(comment){
+			comment.type = articleService.model;
+			comment.type_id = vm.params.id;
+			comment.created = vm.params.id;
+			commentService.create(comment)
+				.then(function(comment) {
+					vm.comments.push(comment.data);
+					vm.comment = {};
+				});
+		}
 	}
 })();

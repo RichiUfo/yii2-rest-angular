@@ -6,7 +6,7 @@
                     <h2 class="post-title">{{article.title}}</h2>
                     <h3 class="post-subtitle" ng-if="article.text">{{article.text | truncate: 140: '...': true}}</h3>
                 </a>
-                <p class="post-meta">Опубликовано {{article.created}}</p>
+                <p class="post-meta">Опубликовано {{article.created | timeago}}</p>
                 <hr ng-if="!$last">
             </div>
         </div>
