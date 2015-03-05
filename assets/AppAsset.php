@@ -18,6 +18,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/bootstrap.min.css',
+        'css/clean-blog/clean-blog.min.css',
         'css/site.css',
     ];
     public $js = [
@@ -25,6 +27,14 @@ class AppAsset extends AssetBundle
         'libs/angular-ui-router.min.js',
         'libs/ui-bootstrap-0.12.1.min.js',
         'libs/ui-bootstrap-tpls-0.12.1.min.js',
+        'libs/clean-blog/jquery.js',
+        'libs/clean-blog/clean-blog.min.js',
+        'js/app.js',
+        'js/routes.js',
+        'js/services/articleService.js',
+        'js/controllers/articleController.js',
+        'js/controllers/headerController.js',
+        'js/pure.js',
     ];
     public $depends = [];
 }
