@@ -8,7 +8,7 @@
 		var vm = this;
 		vm.articles = articles.data;
 		vm.article = article.data;
-		vm.params = $state.params;
+		vm.arrParams = $state.params;
 		vm.comments = comments.data;
 		vm.comment = {};
 		vm.errors = [];
@@ -41,8 +41,7 @@
 
 		function addComment(comment){
 			comment.type = articleService.model;
-			comment.type_id = vm.params.id;
-			comment.created = vm.params.id;
+			comment.type_id = vm.arrParams.id;
 			commentService.create(comment)
 				.then(function(comment) {
 					vm.comments.push(comment.data);
