@@ -21,9 +21,10 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js',
+        'libs/angular-ui-router.min.js',
+        'libs/ui-bootstrap-0.12.1.min.js',
+        'libs/ui-bootstrap-tpls-0.12.1.min.js',
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+    public $depends = [];
 }
