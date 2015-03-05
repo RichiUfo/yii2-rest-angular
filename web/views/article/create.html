@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <form novalidate>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Название</label>
+                        <input ng-model="articleCtrl.article.title" type="text" name="title" class="form-control" placeholder="Название" required data-validation-required-message="Введите название">
+                        <p class="help-block text-danger" ng-if="articleCtrl.errors.title">{{articleCtrl.errors.title}}</p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <label>Текст</label>
+                        <textarea ng-model="articleCtrl.article.text" rows="5" name="text" class="form-control" placeholder="Текст" required data-validation-required-message="Введите текст"></textarea>
+                        <p class="help-block text-danger" ng-if="articleCtrl.errors.text">{{articleCtrl.errors.text}}</p>
+                    </div>
+                </div>
+                <br>
+                <div id="success"></div>
+                <div class="row">
+                    <div class="form-group col-xs-12">
+                        <button ng-click="articleCtrl.createArticle()" class="btn btn-default">Ответить</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

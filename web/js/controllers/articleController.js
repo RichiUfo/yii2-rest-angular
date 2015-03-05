@@ -9,6 +9,9 @@
 		vm.articles = articles.data;
 		vm.article = article.data;
 		vm.params = $state.params;
+		vm.errors = [];
+		vm.createArticle = createArticle;
+
 		$rootScope.rndBG = getRandomInt(1,4);
 		if(vm.article)
 		{
@@ -19,5 +22,17 @@
 			$rootScope.title = '';
 			$rootScope.createdArticle = '';
 		}
+
+		function createArticle(){
+			articleService.create(vm.article)
+				.then(function() {
+					$state.go('body.main');
+				})
+				.catch(function(err) {
+					angular.forEach(err.data, function(value){
+						vm.errors[value.field] = value.message;
+					});
+				});
+		};
 	}
 })();

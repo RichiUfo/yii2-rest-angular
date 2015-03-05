@@ -12,6 +12,7 @@ class ArticleController extends ActiveController
     {
         $actions = parent::actions();
         $actions['index'] = 'app\modules\api\controllers\article\IndexAction';
+//        $actions['create'] = 'app\modules\api\controllers\article\CreateAction';
         return $actions;
     }
 }

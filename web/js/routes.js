@@ -18,7 +18,7 @@
                         "main": {
                             templateUrl: "views/article/main.html",
                             controller: 'articleController',
-                            controllerAs: 'ctr',
+                            controllerAs: 'articleCtrl',
                             resolve: {
                                 articles: ['articleService', function(articleService) {
                                     return articleService.all();
@@ -34,12 +34,30 @@
                         "main": {
                             templateUrl: "views/article/view.html",
                             controller: 'articleController',
-                            controllerAs: 'ctr',
+                            controllerAs: 'articleCtrl',
                             resolve: {
                                 articles: function() { return {}; },
                                 article: ['$stateParams','articleService', function($stateParams, articleService) {
                                     return articleService.get($stateParams.id);
                                 }]
+                            }
+                        }
+                    }
+                })
+                .state('body.articleCreate', {
+                    url: "/articles/create",
+                    views: {
+                        "main": {
+                            templateUrl: "views/article/create.html",
+                            controller: 'articleController',
+                            controllerAs: 'articleCtrl',
+                            resolve: {
+                                articles: function () {
+                                    return {};
+                                },
+                                article: function () {
+                                    return {};
+                                }
                             }
                         }
                     }

@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js',
         'libs/angular-ui-router.min.js',
+        'libs/angular-filter.min.js',
         'libs/ui-bootstrap-0.12.1.min.js',
         'libs/ui-bootstrap-tpls-0.12.1.min.js',
         'libs/clean-blog/jquery.js',

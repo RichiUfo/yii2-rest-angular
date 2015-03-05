@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="post-preview" ng-repeat="article in ctr.articles">
+            <div class="post-preview" ng-repeat="article in articleCtrl.articles">
                 <a ui-sref="body.article({ id: article.id })">
                     <h2 class="post-title">{{article.title}}</h2>
-                    <h3 class="post-subtitle" ng-if="article.text">{{article.text}}</h3>
+                    <h3 class="post-subtitle" ng-if="article.text">{{article.text | truncate: 140: '...': true}}</h3>
                 </a>
                 <p class="post-meta">Опубликовано {{article.created}}</p>
                 <hr ng-if="!$last">
