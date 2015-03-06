@@ -19,6 +19,10 @@
 				deleteItem: function(id) {
 					return $http.delete('api/comments/' + id);
 				}
+				,
+				rate: function(id, type) {
+					return $http.post('api/comments/' + id + '/rate/' + type);
+				}
 			}
 		}])
 })();

@@ -38,11 +38,12 @@ class Comment extends ActiveRecord
 
     public function beforeSave($insert)
     {
+        date_default_timezone_set('Asia/Yekaterinburg');
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord)
             {
                 $this->rate = 0;
-                $this->created = date('Y-m-d h:i:s', time());
+                $this->created = date('Y-m-d H:i:s', time());
                 $this->count_childs = 0;
             }
             return parent::beforeSave($insert);
@@ -98,11 +99,18 @@ class Comment extends ActiveRecord
                     ->one();
     }
 
-    public function incrementFieldById($strField, $intId)
+    public function incrementFieldById($strField, $intId, $boolType = 1)
     {
         if(!$strField || !$intId) return false;
         $strTable = $this->tableName();
-        Yii::$app->db->createCommand("UPDATE $strTable SET $strField = $strField + 1 WHERE id=:id")
+        if($boolType)
+        {
+            $strIncr = '+';
+        } else
+        {
+            $strIncr = '-';
+        }
+        Yii::$app->db->createCommand("UPDATE $strTable SET $strField = $strField $strIncr 1 WHERE id=:id")
             ->bindValue(':id', $intId)
             ->execute();
         return true;

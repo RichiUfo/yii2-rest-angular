@@ -20,6 +20,7 @@ $config = [
                     'controller' => 'api/comment',
                 ],
                 'GET api/comments/<type>/<type_id>' => 'api/comment/index',
+                'POST api/comments/<id>/rate/<type>' => 'api/comment/rate',
             ],
         ],
         'request' => [

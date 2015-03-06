@@ -39,7 +39,7 @@
                 YEAR = 31556926,
                 DECADE = 315569260;
 
-            if (offset <= MINUTE)              span = [ '', raw ? 'только что' : 'несколько минут назад' ];
+            if (offset <= MINUTE)              span = [ '', raw ? '' : 'только что' ];
             else if (offset < (MINUTE * 60))   span = [ Math.round(Math.abs(offset / MINUTE)), plural_str(Math.round(Math.abs(offset / MINUTE)), 'минута', 'минуты', 'минут') ];
             else if (offset < (HOUR * 24))     span = [ Math.round(Math.abs(offset / HOUR)), plural_str(Math.round(Math.abs(offset / HOUR)), 'час', 'часа', 'часов') ];
             else if (offset < (DAY * 7))       span = [ Math.round(Math.abs(offset / DAY)), plural_str(Math.round(Math.abs(offset / DAY)), 'день', 'дня', 'дней') ];
@@ -52,7 +52,7 @@
             if (raw === true) {
                 return span;
             }
-            return (time <= local) ? span + ' назад' : 'через ' + span;
+            return (time <= local) ? span + ' назад' : '' + span;
         }
     }
 
