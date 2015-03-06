@@ -13,17 +13,30 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div ng-repeat="comment in articleCtrl.comments">
-                <div ng-init="comment.showComment = comment.rate < -10 ? false: true" ng-show="comment.rate < -10" ng-click="comment.showComment = !comment.showComment">{{!showComment ? 'Показать комментарий' : 'Скрыть комментарий'}}</div>
-                <div class="comment-wrap row" ng-show="comment.showComment">
-                    <div ng-init="col='col-xs-' + (12-(comment.level - 1));offset='col-xs-offset-' + (comment.level - 1)" ng-class="[col, offset]">
-                        <a id="comment_{{comment.id}}"></a>
-                        <img src="http://lorempixel.com/g/64/64/cats?name={{comment.name}}" />
-                        <div>{{comment.name}}</div>
-                        <div>{{comment.text}}</div>
-                        <div>{{comment.created | timeago}}</div>
-                        <div ng-if="comment.count_childs > 0" ng-click="articleCtrl.toggleTree(comment)">Свернуть ветку</div>
-                        <div><span class="label label-danger" ng-click="articleCtrl.changeRate(comment, 0)">-</span>{{comment.rate}}<span class="label label-success" ng-click="articleCtrl.changeRate(comment, 1)">+</span></div>
-                        <div ng-click="showForm = !showForm">Ответить</div>
+                <div class="show-comment btn btn-warning btn-sm" ng-init="comment.showComment = comment.rate < -10 ? false: true" ng-show="comment.rate < -10" ng-click="comment.showComment = !comment.showComment">{{!comment.showComment ? 'Показать комментарий' : 'Скрыть комментарий'}}</div>
+                <div id="comment_{{comment.id}}" class="comment-wrap row" ng-show="comment.showComment">
+                    <div class="item-comment" ng-init="col='col-xs-' + (12-(comment.level - 1));offset='col-xs-offset-' + (comment.level - 1)" ng-class="[col, offset]">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="http://lorempixel.com/g/64/64/cats?name={{comment.name}}" />
+                            </div>
+                            <div class="col-md-8">
+                                <div>
+                                    <span class="contact-name">{{comment.name}}</span>
+                                    <span class="created">{{comment.created | timeago}}</span>
+                                    <span class="rate">
+                                        <span class="label label-danger" ng-click="articleCtrl.changeRate(comment, 0)">-</span>
+                                         <span class="rate-num">{{comment.rate}}</span>
+                                        <span class="label label-success" ng-click="articleCtrl.changeRate(comment, 1)">+</span>
+                                    </span>
+                                </div>
+                                <div>{{comment.text}}</div>
+                                <span class="toggle-tree" ng-if="comment.count_childs > 0 && comment.level == 1" ng-click="articleCtrl.toggleTree(comment)">Свернуть ветку</span>
+                            </div>
+                            <div class="col-md-2" ng-click="showForm = !showForm">
+                                <span class="btn btn-info btn-sm">Ответить</span>
+                            </div>
+                        </div>
                         <div class="row" ng-show="showForm">
                             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                                 <h3>Добавить комментарий</h3>
