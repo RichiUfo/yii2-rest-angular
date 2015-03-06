@@ -3,8 +3,8 @@
 	angular.module('app')
 		.controller('articleController', articleController);
 
-	articleController.$inject = ['$state', '$rootScope', 'articleService', 'commentService', 'articles', 'article', 'comments'];
-	function articleController($state, $rootScope, articleService, commentService, articles, article, comments) {
+	articleController.$inject = ['$state', '$rootScope', '$filter', '$location', '$anchorScroll', 'articleService', 'commentService', 'articles', 'article', 'comments'];
+	function articleController($state, $rootScope, $filter, $location, $anchorScroll, articleService, commentService, articles, article, comments) {
 		var vm = this;
 		vm.articles = articles.data;
 		vm.article = article.data;
@@ -15,6 +15,7 @@
 
 		vm.createArticle = createArticle;
 		vm.addComment = addComment;
+		vm.gotoComment = gotoComment;
 
 		$rootScope.rndBG = getRandomInt(1,4);
 		if(vm.article)
@@ -39,14 +40,28 @@
 				});
 		}
 
-		function addComment(comment){
+		function addComment(comment, parentId){
 			comment.type = articleService.model;
 			comment.type_id = vm.arrParams.id;
+			comment.parent_id = parentId || 0;
 			commentService.create(comment)
 				.then(function(comment) {
 					vm.comments.push(comment.data);
+					vm.comments = $filter('orderBy')(vm.comments, 'hash');
 					vm.comment = {};
+					vm.errors = [];
+					gotoComment('comment_' + comment.data.id);
+				}).catch(function(err) {
+					angular.forEach(err.data, function(value){
+						vm.errors[value.field] = value.message;
+					});
 				});
 		}
+
+		function gotoComment(id) {
+			if(!id) return false;
+			$location.hash(id);
+			$anchorScroll();
+		};
 	}
 })();

@@ -12,6 +12,7 @@ class IndexAction extends Action
     {
         return Comment::find()
             ->where(['type' => $type, 'type_id' => $type_id])
+            ->orderBy('hash ASC')
             ->all();
     }
 }

@@ -12,6 +12,7 @@ class CommentController extends ActiveController
     {
         $actions = parent::actions();
         $actions['index'] = 'app\modules\api\controllers\comment\IndexAction';
+        $actions['create'] = 'app\modules\api\controllers\comment\CreateAction';
         return $actions;
     }
 }
