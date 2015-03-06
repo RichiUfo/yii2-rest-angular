@@ -1,0 +1,39 @@
+.created {
+  color: #999;
+  font-size: 12px;
+  font-style: italic; }
+
+.rate {
+  font-size: 14px; }
+
+.rate .label {
+  cursor: pointer; }
+
+.rate-num {
+  padding-left: 5px;
+  padding-right: 5px; }
+
+.comment-wrap .item-comment {
+  padding-bottom: 10px;
+  border: 1px solid #eee;
+  padding-top: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px; }
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  float: right; }
+
+.contact-name {
+  color: #0088e4; }
+
+.toggle-tree {
+  font-size: 14px;
+  border-bottom: 1px dashed;
+  cursor: pointer; }
+
+.show-comment {
+  font-size: 14px; }
