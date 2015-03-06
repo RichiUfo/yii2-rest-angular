@@ -61,6 +61,9 @@
                                 },
                                 article: function () {
                                     return {};
+                                },
+                                comments: function () {
+                                    return {};
                                 }
                             }
                         }
