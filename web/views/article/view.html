@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div ng-repeat="comment in articleCtrl.comments">
-                <div class="show-comment btn btn-warning btn-sm" ng-init="comment.showComment = comment.rate < -10 ? false: true" ng-show="comment.rate < -10" ng-click="comment.showComment = !comment.showComment">{{!comment.showComment ? 'Показать комментарий' : 'Скрыть комментарий'}}</div>
+                <div class="show-comment btn btn-warning btn-sm" ng-init="comment.showComment = comment.rate < -10 ? false: true; showBtn = comment.showComment;" ng-show="!showBtn" ng-click="comment.showComment = !comment.showComment">{{!comment.showComment ? 'Показать комментарий' : 'Скрыть комментарий'}}</div>
                 <div id="comment_{{comment.id}}" class="comment-wrap row" ng-show="comment.showComment">
                     <div class="item-comment" ng-init="col='col-xs-' + (12-(comment.level - 1));offset='col-xs-offset-' + (comment.level - 1)" ng-class="[col, offset]">
                         <div class="row">
@@ -25,9 +25,9 @@
                                     <span class="contact-name">{{comment.name}}</span>
                                     <span class="created">{{comment.created | timeago}}</span>
                                     <span class="rate">
-                                        <span class="label label-danger" ng-click="articleCtrl.changeRate(comment, 0)">-</span>
+                                        <span class="label label-danger" ng-click="articleCtrl.changeRate(comment, 0); showBtn = comment.rate < -9 ? false:true;">-</span>
                                          <span class="rate-num">{{comment.rate}}</span>
-                                        <span class="label label-success" ng-click="articleCtrl.changeRate(comment, 1)">+</span>
+                                        <span class="label label-success" ng-click="articleCtrl.changeRate(comment, 1); showBtn = comment.rate < -11 ? false:true;">+</span>
                                     </span>
                                 </div>
                                 <div>{{comment.text}}</div>
